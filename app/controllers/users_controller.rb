@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts
   end
   def new
   	@user = User.new
@@ -46,10 +47,6 @@ class UsersController < ApplicationController
 
 
    private
-
-    def signed_in_user
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
-    end
 
     def correct_user
       @user = User.find(params[:id])
